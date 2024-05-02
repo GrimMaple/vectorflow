@@ -107,12 +107,12 @@ version(unittest)
                 }
             }
         }
-        writeln("----------");
+       version(VectorflowPrint)  writeln("----------");
         if(failed > 0)
         {
-            writefln("At least %d test(s) failed.", failed);
+            version(VectorflowPrint) writefln("At least %d test(s) failed.", failed);
             foreach(m; retro(messages))
-                writeln(m);
+                version(VectorflowPrint) writeln(m);
         }
         return failed == 0;
     }

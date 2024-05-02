@@ -117,7 +117,7 @@ class Serializer {
             auto l = Object.factory(layer_type).to!NeuralLayer;
             l.deser(this);
             layers ~= l;
-            writeln("Deserialized ", l.to!string);
+            version(VectorflowPrint) writeln("Deserialized ", l.to!string);
         }
 
         return layers;

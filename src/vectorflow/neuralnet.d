@@ -432,7 +432,7 @@ class NeuralNet {
 
         if(!_ever_initialized)
         {
-            writeln("Net not initialized. Initializing all weights to 0.");
+            version(VectorflowPrint) writeln("Net not initialized. Initializing all weights to 0.");
             initialize(0.0);
         }
         {
@@ -458,7 +458,7 @@ class NeuralNet {
 
         auto cores_str = (
                 num_cores == 1 ? "1 core." : "%d cores.".format(num_cores));
-        writeln("Training net with ", num_params, " parameters on ", cores_str);
+        version(VectorflowPrint) writeln("Training net with ", num_params, " parameters on ", cores_str);
         foreach(l; layers)
             l.pre_learning();
         opt.learn(this, data, grad_f, verbose, num_cores);
@@ -597,12 +597,12 @@ class NeuralNet {
             f.close();
             try
             {
-                writeln("Serialization failed.");
+                version(VectorflowPrint) writeln("Serialization failed.");
                 remove(path);
             }
             catch(FileException e)
             {
-                writeln("Couldn't cleanup `", path,
+                version(VectorflowPrint) writeln("Couldn't cleanup `", path,
                         "` after serialization failure: ", e);
             }
         }
